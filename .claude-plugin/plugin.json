@@ -1,0 +1,19 @@
+{
+  "name": "hackmd",
+  "version": "0.0.1",
+  "description": "Create and edit HackMD documents with collaborative markdown features, diagrams, embeds, and slide/book modes. Use when working with HackMD notes, collaborative documentation, or presentations.",
+  "author": {
+    "name": "Michael Wang",
+    "url": "https://eastsun.me"
+  },
+  "repository": "https://github.com/EastSun5566/hackmd-skills",
+  "license": "MIT",
+  "keywords": [
+    "hackmd",
+    "markdown",
+    "collaboration",
+    "diagrams",
+    "presentation",
+    "documentation"
+  ]
+}
