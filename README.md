@@ -1,12 +1,14 @@
 # HackMD Agent Skills
 
-Complete Agent Skill for HackMD collaborative markdown editor.
+Agent Skill for HackMD collaborative markdown editor.
 
-This skill follows the [Agent Skills specification](https://agentskills.io/specification) so it can be used by any skills-compatible agent, including Claude Code and Codex CLI.
+Follows the [Agent Skills specification](https://agentskills.io/specification) for cross-platform compatibility with Claude Code, GitHub Copilot, Codex CLI, and other skills-compatible agents.
 
 ## Installation
 
 ### Claude Code
+
+Install via plugin marketplace:
 
 ```bash
 /plugin marketplace add EastSun5566/hackmd-skills
@@ -15,13 +17,23 @@ This skill follows the [Agent Skills specification](https://agentskills.io/speci
 
 ### Manual Installation
 
-#### Claude Code
+For other AI tools or global installation:
 
-Add the contents of this repo to a `/.claude` folder in your working directory.
+```bash
+# Clone the repository
+git clone https://github.com/EastSun5566/hackmd-skills.git
 
-#### Codex CLI
+# Copy the skill to your preferred location
+# Example paths (check your tool's documentation):
+# - Claude Code: ~/.claude/skills/
+# - Codex CLI: ~/.codex/skills/
+# - Project-specific: .claude/skills/
 
-Copy the `skills/` directory into your Codex skills path (typically `~/.codex/skills`).
+cp -r hackmd-skills/skills/hackmd <YOUR_SKILLS_PATH>/
+```
+
+> [!TIP]
+> Most agent tools auto-discover skills in project `.claude/skills/` directories.
 
 ## Usage
 
