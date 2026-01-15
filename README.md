@@ -6,9 +6,26 @@ Follows the [Agent Skills specification](https://agentskills.io/specification) f
 
 ## Installation
 
-### Claude Code
+### Using add-skill
 
-Install via plugin marketplace:
+The easiest way to install across multiple agents:
+
+```bash
+# Install to detected agents
+npx add-skill EastSun5566/hackmd-skills
+
+# Install globally
+npx add-skill EastSun5566/hackmd-skills --global
+
+# Install to specific agents
+npx add-skill EastSun5566/hackmd-skills -a claude-code -a opencode
+```
+
+[`add-skill`](https://github.com/vercel-labs/add-skill) automatically detects your coding agents and installs to the correct paths.
+
+### Claude Code Plugin Marketplace
+
+For Claude Code users who prefer the plugin system:
 
 ```bash
 /plugin marketplace add EastSun5566/hackmd-skills
@@ -17,7 +34,7 @@ Install via plugin marketplace:
 
 ### Manual Installation
 
-For other AI tools or global installation:
+For custom setups or other tools:
 
 ```bash
 # Clone the repository
@@ -28,12 +45,13 @@ git clone https://github.com/EastSun5566/hackmd-skills.git
 # - Claude Code: ~/.claude/skills/
 # - Codex CLI: ~/.codex/skills/
 # - Project-specific: .claude/skills/
+# - Antigravity: .agent/skills/
 
 cp -r hackmd-skills/skills/hackmd <YOUR_SKILLS_PATH>/
 ```
 
 > [!TIP]
-> Most agent tools auto-discover skills in project `.claude/skills/` directories.
+> Most agent tools auto-discover skills in project `.claude/skills/` or `.agent/skills/` directories.
 
 ## Usage
 
