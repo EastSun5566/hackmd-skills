@@ -33,6 +33,11 @@ async function apiRequest(endpoint, options = {}) {
     throw new Error(`API request failed: ${response.status} ${response.statusText}\n${error}`);
   }
 
+  // Return status for DELETE/PATCH, or parse JSON for GET/POST
+  if (response.status === 204 || options.method === 'DELETE') {
+    return { status: response.status };
+  }
+
   return response.json();
 }
 
