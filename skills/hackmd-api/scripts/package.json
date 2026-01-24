@@ -1,0 +1,28 @@
+{
+  "name": "@hackmd-skills/api-cli",
+  "version": "0.0.2",
+  "description": "CLI tool for interacting with HackMD API",
+  "type": "module",
+  "main": "hackmd-cli.mjs",
+  "bin": {
+    "hackmd-cli": "./hackmd-cli.mjs"
+  },
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [
+    "hackmd",
+    "api",
+    "cli",
+    "markdown",
+    "documentation"
+  ],
+  "author": "Michael Wang",
+  "license": "MIT",
+  "dependencies": {
+    "@hackmd/api": "^1.0.0"
+  },
+  "engines": {
+    "node": ">=18.0.0"
+  }
+}

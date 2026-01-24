@@ -1,15 +1,12 @@
 {
-  "name": "hackmd-skills",
+  "id": "hackmd-skills",
   "owner": {
     "name": "Michael Wang",
     "url": "https://eastsun.me"
   },
-  "plugins": [
-    {
-      "name": "hackmd",
-      "source": "./",
-      "description": "Claude Skills for HackMD",
-      "version": "0.0.1"
+  "plugins": {
+    "hackmd": {
+      "version": "0.0.2"
     }
-  ]
+  }
 }

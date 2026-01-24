@@ -1,29 +1,24 @@
 # HackMD Agent Skills
 
-Agent Skill for HackMD collaborative markdown editor.
+> Agent Skills for HackMD
 
-Follows the [Agent Skills specification](https://agentskills.io/specification) for cross-platform compatibility with Claude Code, GitHub Copilot, Codex CLI, and other skills-compatible agents.
+Follows the [Agent Skills specification](https://agentskills.io/specification)
+
+## Skills Included
+
+### `hackmd` - HackMD Flavored Markdown
+
+Comprehensive guide to HackMD's special Markdown Features
+
+### `hackmd-api` - HackMD API Integration
+
+Programmatic note management through HackMD's API
+
+**Prerequisites**: Requires Node.js 18+ and HackMD API token
 
 ## Installation
 
-### Using add-skill
-
-The easiest way to install across multiple agents:
-
-```bash
-# Install to detected agents
-npx add-skill EastSun5566/hackmd-skills
-
-# Install globally
-npx add-skill EastSun5566/hackmd-skills --global
-
-# Install to specific agents
-npx add-skill EastSun5566/hackmd-skills -a claude-code -a opencode
-```
-
-[`add-skill`](https://github.com/vercel-labs/add-skill) automatically detects your coding agents and installs to the correct paths.
-
-### Claude Code Plugin Marketplace
+### Claude Code
 
 For Claude Code users who prefer the plugin system:
 
@@ -40,25 +35,42 @@ For custom setups or other tools:
 # Clone the repository
 git clone https://github.com/EastSun5566/hackmd-skills.git
 
-# Copy the skill to your preferred location
-# Example paths (check your tool's documentation):
-# - Claude Code: ~/.claude/skills/
-# - Codex CLI: ~/.codex/skills/
-# - Project-specific: .claude/skills/
-# - Antigravity: .agent/skills/
-
+# Copy both skills
 cp -r hackmd-skills/skills/hackmd <YOUR_SKILLS_PATH>/
+cp -r hackmd-skills/skills/hackmd-api <YOUR_SKILLS_PATH>/
 ```
-
-> [!TIP]
-> Most agent tools auto-discover skills in project `.claude/skills/` or `.agent/skills/` directories.
 
 ## Usage
 
-Once installed, AI agents can automatically use this skill when working with HackMD documents. Simply mention HackMD features or collaborative documentation in your requests.
+### Using the hackmd Skill
+
+Simply mention HackMD features or collaborative documentation in your requests.
+
+Example: "Create a HackMD document with a mermaid diagram and alert boxes"
+
+### Using the hackmd-api Skill
+
+The API skill requires setup before use:
+
+1. **Get API Token**: Visit https://hackmd.io/settings#api to generate a token
+2. **Set Environment Variable**:
+
+   ```bash
+   export HACKMD_API_TOKEN=your_token_here
+   ```
+3. **Install Dependencies**:
+
+   ```bash
+   cd skills/hackmd-api/scripts
+   npm install
+   ```
+4. **Use the Skill**: AI agents can now manage HackMD notes programmatically
+
+Example: "Create a new HackMD note titled 'Project Docs' with our API documentation"
 
 ## References
 
 - [HackMD Official Features](https://hackmd.io/s/features)
+- [HackMD API Documentation](https://hackmd.io/@hackmd-api/developer-portal)
 - [HackMD Tutorials](https://hackmd.io/c/tutorials)
 - [Agent Skills Specification](https://agentskills.io/specification)

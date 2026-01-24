@@ -1,7 +1,7 @@
 {
   "name": "hackmd",
-  "version": "0.0.1",
-  "description": "Create and edit HackMD documents with collaborative markdown features, diagrams, embeds, and slide/book modes. Use when working with HackMD notes, collaborative documentation, or presentations.",
+  "version": "0.0.2",
+  "description": "Skills for HackMD collaborative markdown editor: (1) hackmd - Format documents with HackMD Flavored Markdown syntax, diagrams, and embeds. (2) hackmd-api - Manage notes programmatically via HackMD API.",
   "author": {
     "name": "Michael Wang",
     "url": "https://eastsun.me"
@@ -14,6 +14,8 @@
     "collaboration",
     "diagrams",
     "presentation",
-    "documentation"
+    "documentation",
+    "api",
+    "automation"
   ]
 }
