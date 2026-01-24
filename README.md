@@ -27,6 +27,8 @@ For Claude Code users who prefer the plugin system:
 /plugin install hackmd@hackmd-skills
 ```
 
+This will install both the `hackmd` and `hackmd-api` skills.
+
 ### Manual Installation
 
 For custom setups or other tools:

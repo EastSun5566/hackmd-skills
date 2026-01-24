@@ -1,7 +1,7 @@
 {
   "name": "hackmd",
   "version": "0.0.2",
-  "description": "Skills for HackMD collaborative markdown editor: (1) hackmd - Format documents with HackMD Flavored Markdown syntax, diagrams, and embeds. (2) hackmd-api - Manage notes programmatically via HackMD API.",
+  "description": "Create and edit HackMD documents with full markdown support, diagrams, and API integration. Use when working with HackMD collaborative documentation.",
   "author": {
     "name": "Michael Wang",
     "url": "https://eastsun.me"

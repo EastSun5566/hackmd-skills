@@ -109,7 +109,7 @@ var continuation = true;
 
 ### Code Wrapping
 
-For long lines without breaks, add `!` after the language:
+For long lines without breaks, add exclamation mark after the language (e.g., `javascript!`):
 
 ```javascript!
 This is a very long line that will wrap instead of creating horizontal scroll, making it easier to read on mobile devices or narrow screens.
@@ -119,14 +119,12 @@ This is a very long line that will wrap instead of creating horizontal scroll, m
 
 Render CSV data as tables:
 
-~~~markdown
 ```csvpreview {header="true"}
 Name,Email,Role
 Alice,alice@example.com,Developer
 Bob,bob@example.com,Designer
 Charlie,charlie@example.com,Manager
 ```
-~~~
 
 Options:
 - `header="true"` - First row as header

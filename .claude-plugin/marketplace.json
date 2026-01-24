@@ -6,14 +6,8 @@
   "plugins": [
     {
       "name": "hackmd",
-      "source": "./skills/hackmd",
-      "description": "HackMD integration skills",
-      "version": "0.0.2"
-    },
-    {
-      "name": "hackmd-api",
-      "source": "./skills/hackmd-api",
-      "description": "HackMD API integration with CLI tools",
+      "source": "./",
+      "description": "Skills for HackMD collaborative markdown editor",
       "version": "0.0.2"
     }
   ]
