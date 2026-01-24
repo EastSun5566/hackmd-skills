@@ -42,6 +42,19 @@ cp -r hackmd-skills/skills/hackmd <YOUR_SKILLS_PATH>/
 cp -r hackmd-skills/skills/hackmd-api <YOUR_SKILLS_PATH>/
 ```
 
+### Install Directly from HackMD Note
+
+You can also install the `hackmd` skill directly from a HackMD note using a one-line command:
+
+```bash
+curl -fsSL "https://hackmd.io/@EastSun5566/hackmd-skill.md?no-meta" \
+  --create-dirs -o ".claude/skills/hackmd/SKILL.md"
+```
+
+This works because HackMD allows you to access the raw Markdown of any note by appending `.md` to the URL. The `?no-meta` query parameter removes metadata like the title for cleaner Markdown.
+
+This is perfect for quickly sharing and installing skills without needing a full repository
+
 ## Usage
 
 ### Using the hackmd Skill
