@@ -55,6 +55,8 @@ This works because HackMD allows you to access the raw Markdown of any note by a
 
 This is perfect for quickly sharing and installing skills without needing a full repository.
 
+Blog post: <https://hackmd.io/@EastSun5566/install-skill-from-note>
+
 ## Usage
 
 ### Using the hackmd Skill
@@ -67,18 +69,20 @@ Example: "Create a HackMD document with a mermaid diagram and alert boxes"
 
 The API skill requires setup before use:
 
-1. **Get API Token**: Visit https://hackmd.io/settings#api to generate a token
+1. **Get API Token**: Visit <https://hackmd.io/settings#api> to generate a token
 2. **Set Environment Variable**:
 
    ```bash
    export HACKMD_API_TOKEN=your_token_here
    ```
+
 3. **Install Dependencies**:
 
    ```bash
    cd skills/hackmd-api/scripts
    npm install
    ```
+
 4. **Use the Skill**: AI agents can now manage HackMD notes programmatically
 
 Example: "Create a new HackMD note titled 'Project Docs' with our API documentation"
