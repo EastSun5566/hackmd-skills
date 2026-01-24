@@ -1,9 +1,5 @@
 #!/usr/bin/env node
 
-import { HackMD } from '@hackmd/api';
-import { parseArgs } from 'node:util';
-import { readFileSync } from 'node:fs';
-
 // Get API token from environment
 const API_TOKEN = process.env.HACKMD_API_TOKEN;
 
@@ -15,8 +11,30 @@ if (!API_TOKEN) {
   process.exit(1);
 }
 
-// Initialize HackMD client
-const hackmd = new HackMD(API_TOKEN);
+// HackMD API Base URL
+const API_BASE_URL = 'https://api.hackmd.io/v1';
+
+// Helper function to make API requests
+async function apiRequest(endpoint, options = {}) {
+  const url = `${API_BASE_URL}${endpoint}`;
+  const headers = {
+    'Authorization': `Bearer ${API_TOKEN}`,
+    'Content-Type': 'application/json',
+    ...options.headers
+  };
+
+  const response = await fetch(url, {
+    ...options,
+    headers
+  });
+
+  if (!response.ok) {
+    const error = await response.text();
+    throw new Error(`API request failed: ${response.status} ${response.statusText}\n${error}`);
+  }
+
+  return response.json();
+}
 
 // Parse command line arguments
 const command = process.argv[2];
@@ -27,14 +45,13 @@ const args = process.argv.slice(3);
  */
 async function listNotes(options) {
   try {
-    const response = await hackmd.getHistory();
-    const notes = response.history || [];
-    
+    const notes = await apiRequest('/notes');
+
     const limit = options.limit || 10;
     const displayNotes = notes.slice(0, limit);
-    
+
     console.log(`\nShowing ${displayNotes.length} of ${notes.length} notes:\n`);
-    
+
     displayNotes.forEach((note, index) => {
       console.log(`${index + 1}. ${note.title || '(Untitled)'}`);
       console.log(`   ID: ${note.id}`);
@@ -42,7 +59,7 @@ async function listNotes(options) {
       console.log(`   Updated: ${new Date(note.lastChangedAt).toLocaleString()}`);
       console.log('');
     });
-    
+
   } catch (error) {
     console.error('Error fetching notes:', error.message);
     process.exit(1);
@@ -58,28 +75,31 @@ async function createNote(options) {
       console.error('Error: --title and --content are required');
       process.exit(1);
     }
-    
-    const noteOptions = {
+
+    const noteData = {
       title: options.title,
       content: options.content,
     };
-    
+
     if (options.readPermission) {
-      noteOptions.readPermission = options.readPermission;
+      noteData.readPermission = options.readPermission;
     }
-    
+
     if (options.writePermission) {
-      noteOptions.writePermission = options.writePermission;
+      noteData.writePermission = options.writePermission;
     }
-    
-    const response = await hackmd.createNote(noteOptions);
-    
+
+    const response = await apiRequest('/notes', {
+      method: 'POST',
+      body: JSON.stringify(noteData)
+    });
+
     console.log('\n✓ Note created successfully!');
     console.log(`  Title: ${options.title}`);
     console.log(`  ID: ${response.id}`);
     console.log(`  URL: https://hackmd.io/${response.id}`);
     console.log('');
-    
+
   } catch (error) {
     console.error('Error creating note:', error.message);
     process.exit(1);
@@ -95,9 +115,9 @@ async function getNote(noteId) {
       console.error('Error: note ID is required');
       process.exit(1);
     }
-    
-    const response = await hackmd.getNote(noteId);
-    
+
+    const response = await apiRequest(`/notes/${noteId}`);
+
     console.log('\n' + '='.repeat(60));
     console.log(`Title: ${response.title || '(Untitled)'}`);
     console.log(`ID: ${response.id}`);
@@ -108,7 +128,7 @@ async function getNote(noteId) {
     console.log('\nContent:\n');
     console.log(response.content);
     console.log('');
-    
+
   } catch (error) {
     console.error('Error fetching note:', error.message);
     process.exit(1);
@@ -125,19 +145,22 @@ async function updateNote(noteId, options) {
       process.exit(1);
     }
     
-    const updateOptions = {
+    const updateData = {
       content: options.content,
     };
     
     if (options.readPermission) {
-      updateOptions.readPermission = options.readPermission;
+      updateData.readPermission = options.readPermission;
     }
     
     if (options.writePermission) {
-      updateOptions.writePermission = options.writePermission;
+      updateData.writePermission = options.writePermission;
     }
     
-    await hackmd.updateNote(noteId, updateOptions);
+    await apiRequest(`/notes/${noteId}`, {
+      method: 'PATCH',
+      body: JSON.stringify(updateData)
+    });
     
     console.log('\n✓ Note updated successfully!');
     console.log(`  ID: ${noteId}`);
@@ -160,7 +183,9 @@ async function deleteNote(noteId) {
       process.exit(1);
     }
     
-    await hackmd.deleteNote(noteId);
+    await apiRequest(`/notes/${noteId}`, {
+      method: 'DELETE'
+    });
     
     console.log('\n✓ Note deleted successfully!');
     console.log(`  ID: ${noteId}`);
