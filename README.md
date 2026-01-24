@@ -53,7 +53,7 @@ curl -fsSL "https://hackmd.io/@EastSun5566/hackmd-skill.md?no-meta" \
 
 This works because HackMD allows you to access the raw Markdown of any note by appending `.md` to the URL. The `?no-meta` query parameter removes metadata like the title for cleaner Markdown.
 
-This is perfect for quickly sharing and installing skills without needing a full repository
+This is perfect for quickly sharing and installing skills without needing a full repository.
 
 ## Usage
 
