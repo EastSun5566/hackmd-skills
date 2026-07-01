@@ -1,9 +1,9 @@
 ---
-name: hackmd
+name: hackmd-markdown
 description: Create and edit HackMD documents with full markdown support, diagrams (Mermaid, Graphviz, PlantUML), and embeds (YouTube, Gist, PDF, Figma). Use when working with HackMD collaborative documentation.
 ---
 
-# HackMD Skill
+# HackMD Flavored Markdown Skill
 
 This skill enables AI agents to create and edit HackMD documents with full support for HackMD Flavored Markdown, diagrams, and external embeds.
 
