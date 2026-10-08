@@ -1,7 +1,7 @@
 {
   "name": "hackmd",
-  "version": "0.0.2",
-  "description": "Create and edit HackMD documents with full markdown support, diagrams, and API integration. Use when working with HackMD collaborative documentation.",
+  "version": "0.1.0",
+  "description": "Write HackMD Flavored Markdown with diagrams, embeds, slides and metadata. Use when working with HackMD collaborative documentation.",
   "author": {
     "name": "Michael Wang",
     "url": "https://eastsun.me"
@@ -15,7 +15,7 @@
     "diagrams",
     "presentation",
     "documentation",
-    "api",
+    "cli",
     "automation"
   ]
 }

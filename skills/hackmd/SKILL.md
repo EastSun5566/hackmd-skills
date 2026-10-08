@@ -1,5 +1,5 @@
 ---
-name: hackmd-markdown
+name: hackmd
 description: Create and edit HackMD documents with full markdown support, diagrams (Mermaid, Graphviz, PlantUML), and embeds (YouTube, Gist, PDF, Figma). Use when working with HackMD collaborative documentation.
 ---
 
@@ -7,32 +7,37 @@ description: Create and edit HackMD documents with full markdown support, diagra
 
 This skill enables AI agents to create and edit HackMD documents with full support for HackMD Flavored Markdown, diagrams, and external embeds.
 
-## Metadata (Title and Tags)
+## Metadata (YAML Front Matter)
 
-HackMD metadata is managed through the editor UI, not in the document content.
+Note settings can be declared in a YAML block at the very top of the note:
 
-**Title**:
-- Edit using the title field in the HackMD editor
-- If not set, the first H1 header (`# Heading`) will be used as the title
-- If no title or H1 exists, the note will be titled "Untitled"
+```markdown
+---
+title: My Note
+description: Shown in link previews
+image: https://example.com/cover.png
+tags: feature, documentation, v2.0
+robots: noindex
+lang: en
+dir: ltr
+breaks: true
+type: slide
+---
+```
 
-**Tags**:
-- Edit using the tags field in the HackMD editor
+Supported keys: `title`, `description`, `image`, `tags`, `robots`, `lang`, `dir`, `breaks` (render single line breaks), `GA`, `disqus`, `slideOptions`, and `type: slide` (open in slide mode).
 
-**Other Settings**:
-- Configure in the note's "Settings" menu
-- Slide mode settings are in the "Slide mode" section of the "Share" menu
+- **Title**: the YAML `title`, otherwise the first H1 (`# Heading`), otherwise "Untitled".
+- **Tags**: YAML `tags`, or the inline format below.
+- Permissions and the remaining settings live in the editor's Share / Settings menus.
 
 ## Tags (Inline Format)
 
-Define tags inline at the start of document:
+Define tags inline in the document:
 
 ```markdown
 ###### tags: `feature` `documentation` `v2.0`
 ```
-
-> [!NOTE]
-> Tags can also be managed through the HackMD editor UI.
 
 ## Table of Contents
 
@@ -72,6 +77,25 @@ Hidden content here :stuck_out_tongue_winking_eye:
 :::spoiler {state="open"} Expanded by default
 This spoiler is open initially
 :::
+```
+
+### GitHub Alerts
+
+```markdown
+> [!NOTE]
+> Useful information that users should know, even when skimming.
+
+> [!TIP]
+> Helpful advice for doing things better or more easily.
+
+> [!IMPORTANT]
+> Key information users need to know to achieve their goal.
+
+> [!WARNING]
+> Urgent info that needs immediate attention to avoid problems.
+
+> [!CAUTION]
+> Advises about risks or negative outcomes of certain actions.
 ```
 
 ## Enhanced Blockquotes
@@ -143,17 +167,11 @@ Options:
 
 ## Ruby Annotations
 
-For CJK text pronunciation:
+For CJK text pronunciation, `{base|annotation}`:
 
 ```markdown
-{ruby 漢字|かんじ}
-{ruby 汉字|hànzì}
-```
-
-Or using superscript:
-
-```markdown
-ruby base ^ruby text^
+{漢字|かんじ}
+{汉字|hànzì}
 ```
 
 ## Emojis
@@ -199,6 +217,17 @@ First reference[^first], second reference[^second].
 [^second]: Second footnote content.
 ```
 
+Inline footnote: `Some text^[Text of the inline footnote].`
+
+## Abbreviations
+
+```markdown
+The HTML specification is maintained by the W3C.
+
+*[HTML]: Hyper Text Markup Language
+*[W3C]: World Wide Web Consortium
+```
+
 ## Definition Lists
 
 ```markdown
@@ -208,6 +237,17 @@ Term 1
 
 Term 2
 : Definition 2
+```
+
+Compact style:
+
+```markdown
+Term 1
+  ~ Definition 1
+
+Term 2
+  ~ Definition 2a
+  ~ Definition 2b
 ```
 
 ## Task Lists
@@ -221,278 +261,15 @@ Term 2
 
 ## Diagrams
 
-### Sequence Diagrams
-
-```sequence
-Alice->Bob: Hello Bob
-Note right of Bob: Bob thinks
-Bob-->Alice: Hi Alice
-Note left of Alice: Alice responds
-Alice->Bob: How are you?
-```
-
-Syntax:
-- `->` : Solid line
-- `-->` : Dashed line
-- `Note right of X:` : Add note
-- `Note left of X:` : Add note
-
-### Flow Charts
-
-```flow
-st=>start: Start
-e=>end: End
-op=>operation: Process
-cond=>condition: Decision?
-io=>inputoutput: Input/Output
-
-st->op->cond
-cond(yes)->io->e
-cond(no)->op
-```
-
-Node types:
-- `start` - Start node
-- `end` - End node
-- `operation` - Process box
-- `condition` - Decision diamond
-- `inputoutput` - I/O parallelogram
-
-### Mermaid Diagrams
-
-#### Flowchart
-
-```mermaid
-graph TD
-    A[Start] --> B{Is it?}
-    B -->|Yes| C[OK]
-    B -->|No| D[End]
-    C --> D
-```
-
-#### Gantt Chart
-
-```mermaid
-gantt
-    title Project Schedule
-    dateFormat  YYYY-MM-DD
-    
-    section Phase 1
-    Design           :a1, 2024-01-01, 30d
-    Development      :after a1, 45d
-    
-    section Phase 2
-    Testing          :2024-03-15, 20d
-    Deployment       :2024-04-05, 10d
-```
-
-#### Sequence Diagram
-
-```mermaid
-sequenceDiagram
-    participant A as Alice
-    participant B as Bob
-    A->>B: Hello!
-    B->>A: Hi there!
-```
-
-#### Class Diagram
-
-```mermaid
-classDiagram
-    class Animal {
-        +String name
-        +int age
-        +makeSound()
-    }
-    class Dog {
-        +String breed
-        +bark()
-    }
-    Animal <|-- Dog
-```
-
-### Graphviz
-
-```graphviz
-digraph G {
-    rankdir=LR;
-    node [shape=box, style=filled, fillcolor=lightblue];
-    
-    A -> B;
-    B -> C;
-    B -> D;
-    C -> E;
-    D -> E;
-}
-```
-
-Advanced example:
-
-```graphviz
-digraph hierarchy {
-    nodesep=1.0
-    node [color=Red,fontname=Courier,shape=box]
-    edge [color=Blue, style=dashed]
-    
-    CEO -> {CTO CFO COO}
-    CTO -> {Dev1 Dev2}
-    CFO -> Accountant
-    {rank=same; Dev1 Dev2 Accountant}
-}
-```
-
-### PlantUML
-
-#### Activity Diagram
-
-```plantuml
-@startuml
-start
-:Initialize;
-if (Condition?) then (yes)
-  :Action A;
-else (no)
-  :Action B;
-endif
-:Complete;
-stop
-@enduml
-```
-
-#### Use Case Diagram
-
-```plantuml
-@startuml
-left to right direction
-actor User
-actor Admin
-
-rectangle System {
-  User -- (Browse)
-  User -- (Purchase)
-  Admin -- (Manage Users)
-  Admin -- (View Reports)
-}
-@enduml
-```
-
-### ABC Music Notation
-
-```abc
-X:1
-T:Twinkle Twinkle Little Star
-M:4/4
-L:1/4
-K:C
-C C G G | A A G2 | F F E E | D D C2 |
-G G F F | E E D2 | G G F F | E E D2 |
-C C G G | A A G2 | F F E E | D D C2 |
-```
-
-### Vega-Lite (Data Visualization)
-
-```vega
-{
-  "$schema": "https://vega.github.io/schema/vega-lite/v5.json",
-  "data": {
-    "values": [
-      {"category": "A", "value": 28},
-      {"category": "B", "value": 55},
-      {"category": "C", "value": 43},
-      {"category": "D", "value": 91}
-    ]
-  },
-  "mark": "bar",
-  "encoding": {
-    "x": {"field": "category", "type": "nominal"},
-    "y": {"field": "value", "type": "quantitative"}
-  }
-}
-```
-
-### Fretboard (Guitar Tabs)
-
-```fretboard {title="C Major Chord", type="h6"}
--oO-*-
---o-o-
--o-oo-
--o-oO-
--oo-o-
--*O-o-
-  3
-```
-
-Options:
-- `type="h6"` - Horizontal, 6 frets
-- `type="v6"` - Vertical, 6 frets
-- `title="..."` - Add title
+Sequence, flow chart, Mermaid, Graphviz, PlantUML, ABC music notation, Vega-Lite and fretboard are fenced code blocks tagged with the diagram language (e.g. ` ```mermaid `). See [references/diagrams.md](references/diagrams.md) for the syntax and examples of each.
 
 ## External Embeds
 
-### YouTube
-
-```markdown
-{%youtube VIDEO_ID %}
-{%youtube 1G4isv_Fylg %}
-```
-
-### Vimeo
-
-```markdown
-{%vimeo VIDEO_ID %}
-{%vimeo 124148255 %}
-```
-
-### GitHub Gist
-
-```markdown
-{%gist username/gist_id %}
-{%gist schacon/4277 %}
-```
-
-### SlideShare
-
-```markdown
-{%slideshare username/presentation-id %}
-{%slideshare briansolis/26-disruptive-technology-trends-2016-2018-56796196 %}
-```
-
-### Speaker Deck
-
-```markdown
-{%speakerdeck username/presentation-slug %}
-{%speakerdeck sugarenia/xxlcss-how-to-scale-css-and-keep-your-sanity %}
-```
-
-### PDF
-
-```markdown
-{%pdf https://example.com/document.pdf %}
-```
-
-> [!WARNING]
-> PDFs require HTTPS URLs and may be blocked by browsers with mixed content protection.
-
-### Figma
-
-```markdown
-{%figma FIGMA_URL %}
-{%figma https://www.figma.com/file/ABC123/Design?node-id=1:2 %}
-```
-
-### HackMD Notes
-
-Embed another HackMD note:
-
-```markdown
-{%hackmd NOTE_ID %}
-{%hackmd @user/note-title %}
-```
+`{%youtube ID %}`, `{%vimeo ID %}`, `{%gist user/id %}`, `{%slideshare ... %}`, `{%speakerdeck ... %}`, `{%pdf URL %}`, `{%figma URL %}`, `{%hackmd NOTE_ID %}`. See [references/embeds.md](references/embeds.md) for each syntax and caveats.
 
 ## Slide Mode
 
-Separate slides with horizontal (`---`) and vertical (`----`) dividers:
+Add `type: slide` to the YAML front matter (or use the Slide Mode button), then separate slides with horizontal (`---`) and vertical (`----`) dividers:
 
 ```markdown
 # First Slide
@@ -555,6 +332,10 @@ While editing, permissions can be set via UI:
 - **Read**: Owners, Signed-in users, Everyone
 - **Write**: Owners, Signed-in users, Everyone
 - **Comment**: Forbidden, Owners, Signed-in users, Everyone
+
+## Managing Notes from the Command Line
+
+To create, update or export notes programmatically, use the `hackmd-cli` skill; write the content with the syntax above and publish it with `hackmd-cli notes create` / `update`.
 
 ## References
 

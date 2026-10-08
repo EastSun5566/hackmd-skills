@@ -7,8 +7,19 @@
     {
       "name": "hackmd",
       "source": "./",
-      "description": "Skills for HackMD collaborative markdown editor",
-      "version": "0.0.2"
+      "description": "Skills for HackMD: Flavored Markdown syntax",
+      "version": "0.1.0"
+    },
+    {
+      "name": "hackmd-cli",
+      "source": {
+        "source": "github",
+        "repo": "hackmdio/hackmd-cli"
+      },
+      "description": "Official HackMD CLI skill for managing notes, folders and teams",
+      "skills": [
+        "./hackmd-cli"
+      ]
     }
   ]
 }
