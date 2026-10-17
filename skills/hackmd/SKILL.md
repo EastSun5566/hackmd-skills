@@ -21,11 +21,10 @@ robots: noindex
 lang: en
 dir: ltr
 breaks: true
-type: slide
 ---
 ```
 
-Supported keys: `title`, `description`, `image`, `tags`, `robots`, `lang`, `dir`, `breaks` (render single line breaks), `GA`, `disqus`, `slideOptions`, and `type: slide` (open in slide mode).
+Supported keys: `title`, `description`, `image`, `tags`, `robots`, `lang`, `dir`, `breaks` (render single line breaks), `disqus`, and `slideOptions`. YAML `type: slide` does not switch the note into slide mode; use the Share menu or a slide-view URL as described below.
 
 - **Title**: the YAML `title`, otherwise the first H1 (`# Heading`), otherwise "Untitled".
 - **Tags**: YAML `tags`, or the inline format below.
@@ -269,7 +268,7 @@ Sequence, flow chart, Mermaid, Graphviz, PlantUML, ABC music notation, Vega-Lite
 
 ## Slide Mode
 
-Add `type: slide` to the YAML front matter (or use the Slide Mode button), then separate slides with horizontal (`---`) and vertical (`----`) dividers:
+Use **Slide mode** and **Preview** in the Share menu, or add `?type=slide` to an existing named note URL such as `https://hackmd.io/@owner/note`. Separate slides with horizontal (`---`) and vertical (`----`) dividers, with a blank line before and after each divider:
 
 ```markdown
 # First Slide
@@ -297,8 +296,9 @@ Use four dashes for vertical slides
 You can add slide-specific attributes
 ```
 
-> [!NOTE]
-> Slide theme and transition settings should be configured in the "Slide mode" section of the "Share" menu.
+Configure theme and transition with a YAML `slideOptions` mapping or the Share menu's **Customize slides** settings. Saved UI metadata overrides matching YAML fields, including replacing the entire `slideOptions` object.
+
+For full slide authoring, speaker notes, fragments, code highlighting, and a complete example, use the `hackmd-slide` skill. Its source is [../hackmd-slide/SKILL.md](../hackmd-slide/SKILL.md) in this repository; install that skill separately if only `hackmd` was installed.
 
 ## Book Mode
 

@@ -10,6 +10,10 @@ Follows the [Agent Skills specification](https://agentskills.io/specification)
 
 Comprehensive guide to HackMD's special Markdown Features
 
+### `hackmd-slide` - HackMD Slides
+
+Create slide decks or turn notes into presentations with HackMD-compatible reveal.js Markdown, speaker notes, fragments, backgrounds, and code highlighting. Includes syntax guidance and a [complete six-slide example](skills/hackmd-slide/assets/example-deck.md).
+
 ### `hackmd-cli` - HackMD CLI
 
 Maintained upstream in [hackmdio/hackmd-cli](https://github.com/hackmdio/hackmd-cli/tree/develop/hackmd-cli), not vendored here. Manage personal/team notes, folders, and history with the official CLI.
@@ -44,6 +48,7 @@ For custom setups or other tools:
 git clone https://github.com/EastSun5566/hackmd-skills.git
 
 cp -r hackmd-skills/skills/hackmd <YOUR_SKILLS_PATH>/
+cp -r hackmd-skills/skills/hackmd-slide <YOUR_SKILLS_PATH>/
 ```
 
 For `hackmd-cli`, see the [upstream repository](https://github.com/hackmdio/hackmd-cli/tree/develop/hackmd-cli).
@@ -70,6 +75,12 @@ Blog post: <https://hackmd.io/@EastSun5566/install-skill-from-note>
 Simply mention HackMD features or collaborative documentation in your requests.
 
 Example: "Create a HackMD document with a mermaid diagram and alert boxes"
+
+### Using the hackmd-slide Skill
+
+Example: "Turn these engineering notes into a five-minute HackMD presentation in Traditional Chinese, with speaker notes and a short code walkthrough."
+
+The skill produces Markdown for a HackMD note. Open the Share menu, choose **Slide mode**, and use **Preview** to present. See the [skill](skills/hackmd-slide/SKILL.md) and [syntax reference](skills/hackmd-slide/references/syntax.md) for settings and compatibility details.
 
 ### Using the hackmd-cli Skill
 
