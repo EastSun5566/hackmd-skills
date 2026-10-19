@@ -14,6 +14,10 @@ Comprehensive guide to HackMD's special Markdown Features
 
 Create slide decks or turn notes into presentations with HackMD-compatible reveal.js Markdown, speaker notes, fragments, backgrounds, and code highlighting. Includes syntax guidance and a [complete six-slide example](skills/hackmd-slide/assets/example-deck.md).
 
+### `hackwiki` - HackMD-backed Wiki
+
+Search and maintain a persistent wiki in HackMD, following its schema and keeping its index and log in sync. Use for wiki knowledge workflows; use `hackmd-cli` for general note and folder operations. The [Hackwiki CLI and SDK](https://github.com/EastSun5566/hackwiki) remain maintained in their own repository.
+
 ### `hackmd-cli` - HackMD CLI
 
 Maintained upstream in [hackmdio/hackmd-cli](https://github.com/hackmdio/hackmd-cli/tree/develop/hackmd-cli), not vendored here. Manage personal/team notes, folders, and history with the official CLI.
@@ -29,6 +33,14 @@ npx skills add https://github.com/eastsun5566/hackmd-skills
 npx skills add hackmdio/hackmd-cli   # optional: hackmd-cli skill
 ```
 
+To install only the Hackwiki skill:
+
+```bash
+npx skills add EastSun5566/hackmd-skills --skill hackwiki
+```
+
+The Hackwiki skill is now maintained here. If you installed it from the Hackwiki repository, reinstall from this source using the same project or global scope (add `-g` for global). Your wiki data and login configuration do not need to move.
+
 ### Claude Code
 
 For Claude Code users who prefer the plugin system:
@@ -38,6 +50,8 @@ For Claude Code users who prefer the plugin system:
 /plugin install hackmd@hackmd-skills
 /plugin install hackmd-cli@hackmd-skills   # optional
 ```
+
+The `hackmd` plugin bundles `hackmd`, `hackmd-slide`, and `hackwiki`.
 
 ### Manual Installation
 
@@ -49,6 +63,7 @@ git clone https://github.com/EastSun5566/hackmd-skills.git
 
 cp -r hackmd-skills/skills/hackmd <YOUR_SKILLS_PATH>/
 cp -r hackmd-skills/skills/hackmd-slide <YOUR_SKILLS_PATH>/
+cp -r hackmd-skills/skills/hackwiki <YOUR_SKILLS_PATH>/
 ```
 
 For `hackmd-cli`, see the [upstream repository](https://github.com/hackmdio/hackmd-cli/tree/develop/hackmd-cli).
@@ -90,6 +105,12 @@ hackmd-cli login
 ```
 
 Example: "List my HackMD notes and export the one titled 'Project Docs' to a local file"
+
+### Using the hackwiki Skill
+
+Example: "Use Hackwiki to search my wiki for slide authoring guidance, then save these new findings with their sources and check the wiki for issues."
+
+The [skill](skills/hackwiki/SKILL.md) guides authentication and workspace selection. A HackMD API token is required; use an existing `hackmd-cli login` configuration or `HMD_API_ACCESS_TOKEN`. The CLI can run through `npx @hackwiki/cli` without a global installation.
 
 ## References
 

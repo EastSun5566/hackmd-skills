@@ -1,5 +1,6 @@
 {
   "name": "hackmd-skills",
+  "description": "Agent skills for HackMD documents, slide decks, wiki knowledge workflows, and CLI operations.",
   "owner": {
     "name": "Michael Wang"
   },
@@ -7,8 +8,8 @@
     {
       "name": "hackmd",
       "source": "./",
-      "description": "Skills for HackMD: Flavored Markdown syntax",
-      "version": "0.1.0"
+      "description": "Skills for HackMD documents, slide decks, and Hackwiki knowledge workflows",
+      "version": "0.2.0"
     },
     {
       "name": "hackmd-cli",
