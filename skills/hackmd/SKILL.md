@@ -1,11 +1,11 @@
 ---
 name: hackmd
-description: Create and edit HackMD documents with full markdown support, diagrams (Mermaid, Graphviz, PlantUML), and embeds (YouTube, Gist, PDF, Figma). Use when working with HackMD collaborative documentation.
+description: Create and edit HackMD documents and Book mode navigation with Markdown, diagrams (Mermaid, Graphviz, PlantUML), and embeds (YouTube, Gist, PDF, Figma). Use for collaborative documentation and organizing linked notes into books.
 ---
 
 # HackMD Flavored Markdown Skill
 
-This skill enables AI agents to create and edit HackMD documents with full support for HackMD Flavored Markdown, diagrams, and external embeds.
+Create HackMD documents with Markdown, diagrams, and embeds, or organize linked notes into a Book mode reading guide. Use the user's requested language for generated content.
 
 ## Metadata (YAML Front Matter)
 
@@ -24,7 +24,7 @@ breaks: true
 ---
 ```
 
-Supported keys: `title`, `description`, `image`, `tags`, `robots`, `lang`, `dir`, `breaks` (render single line breaks), `disqus`, and `slideOptions`. YAML `type: slide` does not switch the note into slide mode; use the Share menu or a slide-view URL as described below.
+Supported keys: `title`, `description`, `image`, `tags`, `robots`, `lang`, `dir`, `breaks` (render single line breaks), `disqus`, and `slideOptions`. YAML `type: slide` or `type: book` does not switch the note's mode; use the UI or a mode-specific URL as described below.
 
 - **Title**: the YAML `title`, otherwise the first H1 (`# Heading`), otherwise "Untitled".
 - **Tags**: YAML `tags`, or the inline format below.
@@ -268,53 +268,24 @@ Sequence, flow chart, Mermaid, Graphviz, PlantUML, ABC music notation, Vega-Lite
 
 ## Slide Mode
 
-Use **Slide mode** and **Preview** in the Share menu, or add `?type=slide` to an existing named note URL such as `https://hackmd.io/@owner/note`. Separate slides with horizontal (`---`) and vertical (`----`) dividers, with a blank line before and after each divider:
+For presentations or converting notes into a deck, use the `hackmd-slide` skill for authoring, syntax, settings, and a complete example. Its source is [../hackmd-slide/SKILL.md](../hackmd-slide/SKILL.md); install it separately if only `hackmd` was installed.
 
-```markdown
-# First Slide
-
-Content here
-
----
-
-# Second Slide (next horizontal slide)
-
-More content
-
-----
-
-# Vertical Slide (below second slide)
-
-Use four dashes for vertical slides
-
----
-
-<!-- .slide: data-background="#ff0000" -->
-
-# Slide with Red Background
-
-You can add slide-specific attributes
-```
-
-Configure theme and transition with a YAML `slideOptions` mapping or the Share menu's **Customize slides** settings. Saved UI metadata overrides matching YAML fields, including replacing the entire `slideOptions` object.
-
-For full slide authoring, speaker notes, fragments, code highlighting, and a complete example, use the `hackmd-slide` skill. Its source is [../hackmd-slide/SKILL.md](../hackmd-slide/SKILL.md) in this repository; install that skill separately if only `hackmd` was installed.
+To present, choose **Slide mode** and **Preview** in the Share menu, or add `?type=slide` to an existing named note URL such as `https://hackmd.io/@owner/note`. The URL selects a view without changing saved mode settings or access permissions.
 
 ## Book Mode
 
-Create a book structure with nested links:
+Use Book mode to arrange multiple notes into a reading guide. Keep the book note focused on navigation, with the full text in the linked notes. Replace the illustrative paths below with supplied or verified note URLs:
 
 ```markdown
-# Book Title
+# Getting started
 
-## Chapter 1
-- [Section 1.1](link-to-note-1)
-- [Section 1.2](link-to-note-2)
+## Read first
 
-## Chapter 2
-- [Section 2.1](link-to-note-3)
-  - [Subsection 2.1.1](link-to-note-4)
+- [Welcome](/@your-team/replace-with-welcome-note)
+- [Setup](/@your-team/replace-with-setup-note)
 ```
+
+For book structure, nested groups, link handling, opening the book, and a complete onboarding example, read [references/book.md](references/book.md).
 
 ## Image Upload
 

@@ -6,7 +6,7 @@ Skills that help coding agents write HackMD documents, create slides, and mainta
 
 | Skill | Use it to |
 | --- | --- |
-| [hackmd](skills/hackmd/SKILL.md) | Write documents with HackMD Markdown, diagrams, and embeds. |
+| [hackmd](skills/hackmd/SKILL.md) | Write documents with diagrams and embeds, or organize notes into Book mode reading guides. |
 | [hackmd-slide](skills/hackmd-slide/SKILL.md) | Turn notes into slides with speaker notes and code highlighting. |
 | [hackwiki](skills/hackwiki/SKILL.md) | Search, read, and update a wiki stored in HackMD. |
 | [hackmd-cli](https://github.com/hackmdio/hackmd-cli/tree/develop/hackmd-cli) | Manage notes, folders, and teams with the official CLI. |
@@ -31,6 +31,7 @@ If you installed Hackwiki from its old repository, reinstall from this source us
 ## Try it
 
 - `hackmd`: "Turn these notes into a document with a Mermaid diagram and a warning box."
+- `hackmd` (Book mode): "Arrange these five notes into an onboarding book, from project overview to the first task. Keep the original note links."
 - `hackmd-slide`: "Make a five-minute presentation from this document, with speaker notes."
 - `hackwiki`: "Search my wiki for slide authoring guidance, then save these findings with their sources."
 - `hackmd-cli`: "List my notes and export the one titled Project Docs."
