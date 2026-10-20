@@ -9,7 +9,7 @@ Create HackMD documents with Markdown, diagrams, and embeds, or organize linked 
 
 ## Metadata (YAML Front Matter)
 
-Note settings can be declared in a YAML block at the very top of the note:
+When YAML metadata is enabled, put the frontmatter at the very top of the note:
 
 ```markdown
 ---
@@ -24,15 +24,17 @@ breaks: true
 ---
 ```
 
-Supported keys: `title`, `description`, `image`, `tags`, `robots`, `lang`, `dir`, `breaks` (render single line breaks), `disqus`, and `slideOptions`. YAML `type: slide` or `type: book` does not switch the note's mode; use the UI or a mode-specific URL as described below.
+Common YAML fields: `title`, `description`, `image`, `tags`, `robots`, `lang`, `dir`, `breaks` (render single line breaks), and `slideOptions`. YAML `type: slide` or `type: book` does not switch the note's mode; use the UI or a mode-specific URL as described below.
 
-- **Title**: the YAML `title`, otherwise the first H1 (`# Heading`), otherwise "Untitled".
-- **Tags**: YAML `tags`, or the inline format below.
+- **Initial title**: when a creation tool does not supply one, HackMD can derive it from YAML `title`, otherwise the first H1 (`# Heading`), otherwise "Untitled".
+- **Initial tags**: when a creation tool does not supply them, HackMD can derive them from YAML `tags` or the legacy inline format below.
 - Permissions and the remaining settings live in the editor's Share / Settings menus.
 
-## Tags (Inline Format)
+Saved note settings take precedence over matching YAML fields. To update an existing note's title or tags, use the title/tag controls, Note settings, or fields explicitly supported by the chosen tool. Editing YAML, H1, or H6 text alone is not a reliable way to update saved metadata. If a YAML setting seems ineffective, check the saved settings first. See the [metadata changes](https://hackmd.io/blog/2023/06/12/how-to-handle-metadata-change-en) and [current note settings](https://hackmd.io/@docs/how-to-edit-metadata-of-a-note-en) guides.
 
-Define tags inline in the document:
+## Tags (Legacy Inline Format)
+
+Recognize this format in older notes or when deriving initial tags:
 
 ```markdown
 ###### tags: `feature` `documentation` `v2.0`
@@ -77,6 +79,16 @@ Hidden content here :stuck_out_tongue_winking_eye:
 This spoiler is open initially
 :::
 ```
+
+### Inline Spoilers
+
+Use `||hidden text||` to conceal a short answer or spoiler within a sentence:
+
+```markdown
+The answer is ||42||.
+```
+
+The hidden text remains in the Markdown source and can be revealed by readers. Do not use spoilers to store secrets.
 
 ### GitHub Alerts
 
@@ -264,7 +276,7 @@ Sequence, flow chart, Mermaid, Graphviz, PlantUML, ABC music notation, Vega-Lite
 
 ## External Embeds
 
-`{%youtube ID %}`, `{%vimeo ID %}`, `{%gist user/id %}`, `{%slideshare ... %}`, `{%speakerdeck ... %}`, `{%pdf URL %}`, `{%figma URL %}`, `{%hackmd NOTE_ID %}`. See [references/embeds.md](references/embeds.md) for each syntax and caveats.
+`{%youtube ID %}`, `{%vimeo ID %}`, `{%gist user/id %}`, `{%slideshare ... %}`, `{%speakerdeck ... %}`, `{%pdf URL %}`, `{%figma URL %}`, `{%hackmd NOTE_ID %}`, `{%preview URL %}`. See [references/embeds.md](references/embeds.md) for URL compatibility, placement rules, and examples.
 
 ## Slide Mode
 

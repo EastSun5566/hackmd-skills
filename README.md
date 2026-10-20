@@ -67,18 +67,6 @@ cp -r hackmd-skills/skills/hackwiki <YOUR_SKILLS_PATH>/
 
 </details>
 
-<details>
-<summary>Install the hackmd skill from a HackMD note</summary>
-
-```sh
-curl -fsSL "https://hackmd.io/@EastSun5566/hackmd-skill.md?no-meta" \
-  --create-dirs -o ".claude/skills/hackmd/SKILL.md"
-```
-
-The `.md?no-meta` URL returns the note's Markdown without metadata. See [the walkthrough](https://hackmd.io/@EastSun5566/install-skill-from-note).
-
-</details>
-
 ## Links
 
 - [HackMD features](https://hackmd.io/s/features) and [tutorials](https://hackmd.io/c/tutorials)

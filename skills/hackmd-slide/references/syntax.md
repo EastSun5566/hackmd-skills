@@ -116,6 +116,8 @@ The result is <span>smaller<!-- .element: class="fragment highlight-blue" --></s
 
 Use double-quoted, nonempty values in these comments. For boolean attributes, supply a value, e.g. `data-auto-animate="true"`. A comment after a whole list can target the list instead of its last item, so keep item-level comments on the item line.
 
+Values containing `=` are not reliably applied through `.slide:` or `.element:` comments. This includes URLs with query parameters; see the background guidance below.
+
 `class="fragment"` reveals an element. Built-in styles include `fade-up`, `fade-down`, `fade-left`, `fade-right`, `fade-out`, `grow`, `shrink`, `current-visible`, and `highlight-red`, `highlight-green`, or `highlight-blue`. Use motion sparingly. A `fade-out` fragment starts visible and disappears when stepped.
 
 Fragments without explicit indices follow DOM order. Explicit indices determine order; the same index groups elements into one step. Prefer either all implicit ordering or explicit indices for the entire intended sequence, since unindexed fragments are appended after indexed groups.
@@ -135,6 +137,8 @@ Image background (replace the example URL with a supplied or verified asset):
 ```
 
 The older `data-background="#e8f4ff"` or `data-background="https://example.com/cover.jpg"` syntax is also supported. For tiling, use `data-background-repeat="repeat"` with an explicit size, e.g. `data-background-size="100px"`. Video backgrounds use `data-background-video="https://example.com/background.mp4"`; playback is subject to browser media policies. Do not make essential information depend on autoplay.
+
+An image URL such as `https://example.com/cover.jpg?w=1280` may fail to apply as a background because of the `=` in the comment attribute. Preserve the full URL, especially signed or access-bearing parameters. Use a normal Markdown image instead, or obtain another verified asset URL suitable for a background, then check the preview. Do not strip or rewrite query parameters to make the comment work.
 
 Choose text colors that remain readable against the background. If more control is needed, use a small HTML wrapper with inline styling, preserving blank lines around Markdown inside the wrapper. Custom `<style>` content is filtered; do not rely on external CSS imports or scripts. Avoid introducing a full custom layout when ordinary Markdown fits.
 
@@ -164,10 +168,10 @@ console.log(greeting.join('\n'));
 | `javascript []` | Show line numbers without selecting lines |
 | `javascript [1,3-4]` | Highlight lines 1, 3, and 4 together |
 | `javascript [1|2-3|4]` | Step through three highlight groups |
-| `javascript [10: 10-12]` | Start displayed line numbers at 10 and highlight 10–12 |
+| `javascript [10: 1-3]` | Start displayed line numbers at 10 and highlight the first three code lines (displayed as 10–12) |
 | `javascript=10` | HackMD line-number shorthand starting at 10 |
 
-Use `|` for successive highlight steps. Line numbers refer to the displayed numbering, including any offset. Leave a space between the language and `[ ... ]`; no HTML scaffolding or extra installation is needed.
+Use `|` for successive highlight steps. Highlight selections refer to one-based positions within the code block; an offset only changes the displayed line numbers. Leave a space between the language and `[ ... ]`; no HTML scaffolding or extra installation is needed.
 
 Use an explicit offset when continuation numbering matters, rather than `=+`. Long code should be shortened or split rather than relying on normal-note wrapping syntax.
 
